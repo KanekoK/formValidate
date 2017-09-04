@@ -1,0 +1,1 @@
+$('#kana01').find('input').val();
