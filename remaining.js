@@ -27,7 +27,9 @@ jQuery(function($) {
   };
 
   $('.form_block1 dd.must input').on('blur mouseup keyup', function() {
-    $formRequired.each(function() {
+    $formRequired.map(function() {
+      // QUESTION : 関数の引数にセレクタを渡すことができるのか？
+      // TODO : .mapメソッドの動きの確認
       if ( judge($(this)) ) {
         $(this).addClass('complete');
         console.log($(this));
