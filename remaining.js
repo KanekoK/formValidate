@@ -32,7 +32,13 @@ jQuery(function($) {
    * @return boolean
    */
   function isEntered($item) {
-    var $itemValue = $item.children().val();
+    var $itemFormType = $item.children();
+    // inputだったら)
+    if (1 < $itemFormType.find('input').length) {
+      
+    }
+    // Value
+    var $itemValue = $itemFormType.val();
     if ($itemValue != "") {
       // 値がある場合
       return true;
@@ -60,9 +66,9 @@ jQuery(function($) {
    * @return boolean
    */
 
-  function multiItem() {
+  // function multiItem() {
 
-  }
+  // }
 
 
 
