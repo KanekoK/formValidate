@@ -26,6 +26,11 @@ textareaの場合
 
 jQuery(function($) {
 
+  /**
+   * 入力値があるがどうかの判定
+   * @param  $item | selector
+   * @return boolean
+   */
   function isEntered($item) {
     var $itemValue = $item.children().val();
     if ($itemValue != "") {
@@ -37,15 +42,34 @@ jQuery(function($) {
     }
   }
 
+  /**
+   * エラー表示がされているかどうかの判定
+   * @param  $item | selector
+   * @param  $type | input:type
+   * @return boolean
+   */
   function inValid($item, type = 'input') {
     var $itemValid = $item.children().find(type).hasClass('err');
     // エラーの場合、true
     return $itemValid;
   }
 
+  /**
+   * 1項目に複数ある場合の処理
+   * @param  $item | selector
+   * @return boolean
+   */
+
+  function multiItem() {
+
+  }
+
+
+
   var $required_items = $('.form_block1 dd.must');
 
   console.log('必須項目の数：' + $required_items.length);
+
 
   $required_items.on('mouseup keyup change', function() {
     var notEnteredItemsCount = $required_items.filter(function() {
