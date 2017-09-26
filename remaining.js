@@ -54,10 +54,14 @@ jQuery(function($) {
    * @param  $type | input:type
    * @return boolean
    */
-  function inValid($item, type = 'input') {
-    var $itemValid = $item.children().find(type).hasClass('err');
-    // エラーの場合、true
-    return $itemValid;
+  function inValid($item) {
+    var $itemValid = $item.find('.err').length;
+    if ($itemValid) {
+      return true;    // エラーの場合、true
+    } else {
+      return false;   // エラーがない場合、false
+    }
+
   }
 
   /**
@@ -71,9 +75,9 @@ jQuery(function($) {
   // }
 
 
-
+  // 全体の必須項目のセレクタ
   var $required_items = $('.form_block1 dd.must');
-
+  // $required_items.length:全体の必須項目の数
   console.log('必須項目の数：' + $required_items.length);
 
 
@@ -81,7 +85,7 @@ jQuery(function($) {
     var notEnteredItemsCount = $required_items.filter(function() {
       var $item = $(this);
       // 値があって、エラーがないもの
-      return !inValid($item) && isEntered($item);
+      return isEntered($item) && !inValid($item);
     }).length;
     console.log('入力完了数：' + notEnteredItemsCount);
   });
