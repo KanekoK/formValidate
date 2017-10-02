@@ -33,18 +33,21 @@ jQuery(function($) {
    */
   function isEntered($item) {
     var $itemFormType = $item.children();
-    // inputだったら)
+    // inputが複数あったら、radio,checkbox
     if (1 < $itemFormType.find('input').length) {
-      
-    }
-    // Value
-    var $itemValue = $itemFormType.val();
-    if ($itemValue != "") {
-      // 値がある場合
-      return true;
+      if ($itemFormType.find('input').attr('type') === 'radio') {
+        return $itemFormType.find('input').is(':checked');
+      }
     } else {
-      // 値がない場合
-      return false;
+      // Value
+      var $itemValue = $itemFormType.val();
+      if ($itemValue != "") {
+        // 値がある場合
+        return true;
+      } else {
+        // 値がない場合
+        return false;
+      }
     }
   }
 
@@ -80,7 +83,7 @@ jQuery(function($) {
   // $required_items.length:全体の必須項目の数
   console.log('必須項目の数：' + $required_items.length);
 
-
+  // メインの処理
   $required_items.on('mouseup keyup change', function() {
     var notEnteredItemsCount = $required_items.filter(function() {
       var $item = $(this);
